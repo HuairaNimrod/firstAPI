@@ -1,26 +1,37 @@
 
 GET http://localhost:8080/contacts
 
+### Create contact 
+POST http://localhost:8080/contacts HTTP/1.1
+content-type: application/json
 
-###
-GET http://localhost:8080/contacts/650fc6ec33926eb8c2633f10
+{   
+    "firstName":"triam", 
+    "lastName":"villa", 
+    "email":"liam@test.com", 
+    "favoriteColor":"black",
+    "birthday":"03-01-2000"
+}
 
-###
-GET http://localhost:8080/contacts/650fe11233926eb8c2633f11
+### PUT contact 
+PUT http://localhost:8080/contacts/65168e1fa97710b0bf2ee180 HTTP/1.1
+content-type: application/json
 
-###
-GET http://localhost:8080/contacts/650fe16733926eb8c2633f12
+{
+    "firstName":"Abiud", 
+    "lastName":"Rosales", 
+    "email":"abi@test.com", 
+    "favoriteColor":"GREEN", 
+    "birthday":"03-01-2000"
+}
+
+### DELETE contact
+DELETE http://localhost:8080/contacts/65168e7aa97710b0bf2ee181 HTTP/1.1
+
+
+
+
+
 
 # Production
 
-### 
-GET https://firstapi-w02.onrender.com/contacts/
-
-### 
-GET https://firstapi-w02.onrender.com/contacts/650fc6ec33926eb8c2633f10
-
-### 
-GET https://firstapi-w02.onrender.com/contacts/650fe11233926eb8c2633f11
-
-### 
-GET https://firstapi-w02.onrender.com/contacts/650fe16733926eb8c2633f12

@@ -35,3 +35,36 @@ DELETE http://localhost:8080/contacts/65168e7aa97710b0bf2ee181 HTTP/1.1
 
 # Production
 
+
+
+###
+GET https://firstapi-w03.onrender.com/contacts
+
+### Create contact 
+POST https://firstapi-w03.onrender.com/contacts HTTP/1.1
+content-type: application/json
+
+{   
+    "firstName":"Liam", 
+    "lastName":"villa", 
+    "email":"liam@test.com", 
+    "favoriteColor":"black",
+    "birthday":"03-01-2000"
+}
+
+### PUT contact 
+PUT https://firstapi-w03.onrender.com/contacts/6518fa3cd628f2a3cfcc4b72 HTTP/1.1
+content-type: application/json
+
+{
+    "firstName":"Abiud", 
+    "lastName":"Rosales", 
+    "email":"abi@test.com", 
+    "favoriteColor":"GREEN", 
+    "birthday":"01-29-2010"
+}
+
+### DELETE contact
+DELETE https://firstapi-w03.onrender.com/contacts/651d05d6c558799ba719ad63 HTTP/1.1
+
+

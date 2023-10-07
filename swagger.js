@@ -5,8 +5,8 @@ const doc = {
     title: 'My API',
     description: 'Temple API',
   },
-  host: 'https://firstapi-fpfi.onrender.com',
-  schemes: ['http'],
+  host: 'firstapi-fpfi.onrender.com',
+  schemes: ['https'],
 };
 
 const outputFile = './swagger.json';

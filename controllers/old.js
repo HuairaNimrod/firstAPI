@@ -1,46 +1,30 @@
+// use it as reference
+
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAll = async (req, res) => {
-  const result = await mongodb
-  .getDb()
-  .db()
-  .collection('contacts')
-  .find();
-
+const getAll = async (req, res, next) => {
+  const result = await mongodb.getDb().db().collection('contacts').find();
   result.toArray().then((lists) => {
-    if(lists){
-      res.setHeader('Content-Type', 'application/json');
-      res.status(200).json(lists);
-    }
-    else{
-      res.status(400).json({ message: err });
-    }
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists);
   });
 };
 
-const getSingle = async (req, res) => {
-  if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid contact id to find a contact.');
-  }
+const getSingle = async (req, res, next) => {
   const userId = new ObjectId(req.params.id);
   const result = await mongodb
     .getDb()
     .db()
     .collection('contacts')
     .find({ _id: userId });
-
-    result.toArray().then((lists) => {
-      if (lists) {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists[0]);
-      }
-      else{
-        res.status(400).json({ message: err });
-      }
-      
-    });
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists[0]);
+  });
 };
+
+//POST
 
 const createContact = async (req, res) => {
   const contact = {
@@ -58,6 +42,8 @@ const createContact = async (req, res) => {
   }
 };
 
+
+//PUT
 const updateContact = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid contact id to update a contact.');
@@ -84,28 +70,28 @@ const updateContact = async (req, res) => {
   }
 };
 
+
+
+//DELETE
+
 const deleteContact = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid contact id to delete a contact.');
   }
   const userId = new ObjectId(req.params.id);
-  const response = await mongodb
-  .getDb()
-  .db()
-  .collection('contacts')
-  .deleteOne({ _id: userId }, true);
-  console.log(response);
-  if (response.deletedCount > 0) {
-    res.status(204).send();
+  const result = await mongodb
+    .getDb()
+    .db()
+    .collection('contacts')
+    .deleteOne({ _id: userId }, true);
+  console.log(result);
+  if (result.deletedCount > 0) {
+    res.status(200).send();
   } else {
-    res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
+    res.status(500).json(result.error || 'Some error occurred while deleting the contact.');
   }
+
 };
 
-module.exports = {
-  getAll,
-  getSingle,
-  createContact,
-  updateContact,
-  deleteContact
-};
+
+module.exports = { getAll, getSingle, createContact, updateContact, deleteContact };

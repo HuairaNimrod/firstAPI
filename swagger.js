@@ -3,9 +3,11 @@ const swaggerAutogen = require('swagger-autogen')();
 const doc = {
   info: {
     title: 'My API',
-    description: 'Temple API',
+    description: 'Temple API'
   },
-  host: 'firstapi-fpfi.onrender.com',
+  // host: 'localhost:8083',
+  // schemes: ['http']
+  host: 'firstapi-w06.onrender.com',
   schemes: ['https'],
 };
 
